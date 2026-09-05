@@ -76,4 +76,3 @@ Returns user directory with role filtering options.
 
 ### `POST /admin/users`
 Creates new user profile.
-![alt text](<Screenshot 2026-09-05 at 4.14.27 PM.png>) ![alt text](<Screenshot 2026-09-05 at 4.18.41 PM.png>) ![alt text](<Screenshot 2026-09-05 at 4.19.16 PM.png>) ![alt text](<Screenshot 2026-09-05 at 4.19.30 PM.png>) ![alt text](<Screenshot 2026-09-05 at 4.19.48 PM.png>) ![alt text](<Screenshot 2026-09-05 at 4.20.01 PM.png>) ![alt text](<Screenshot 2026-09-05 at 4.20.11 PM.png>) ![alt text](<Screenshot 2026-09-05 at 4.15.01 PM.png>) ![alt text](<Screenshot 2026-09-05 at 4.15.24 PM.png>) ![alt text](<Screenshot 2026-09-05 at 4.15.43 PM.png>) ![alt text](<Screenshot 2026-09-05 at 4.16.36 PM.png>) ![alt text](<Screenshot 2026-09-05 at 4.16.50 PM.png>) ![alt text](<Screenshot 2026-09-05 at 4.17.05 PM.png>)
