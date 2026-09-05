@@ -1,0 +1,2 @@
+python-interpreter-path = "venv/bin/python"
+search-path = ["backend", "ml"]
