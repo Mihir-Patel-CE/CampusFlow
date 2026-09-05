@@ -328,3 +328,19 @@ class TimetableUpdate(BaseModel):
     start_time: Optional[str] = None
     end_time: Optional[str] = None
     room: Optional[str] = None
+
+class GoalCreate(BaseModel):
+    title: str
+    target_date: Optional[date] = None
+
+class GoalOut(BaseModel):
+    id: int
+    student_id: int
+    title: str
+    target_date: Optional[date] = None
+    is_completed: bool
+    created_at: datetime
+
+    class Config:
+        from_attributes = True
+

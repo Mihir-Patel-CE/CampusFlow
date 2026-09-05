@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from typing import List
+from typing import List, Optional, Any, Dict
 from datetime import datetime, date
 from app.core.database import get_db
 from app.core.security import require_role
@@ -12,7 +12,7 @@ from app.services.risk_ml import risk_service
 from app.services.daily_actions import DailyActionsService
 from app.services.growth_score import GrowthScoreService
 from app.services.study_planner import StudyPlannerService
-from app.schemas.pydantic_models import StudyPlannerRequest, SubmissionCreate
+from app.schemas.pydantic_models import StudyPlannerRequest, SubmissionCreate, GoalCreate, GoalOut
 
 router = APIRouter()
 
@@ -407,7 +407,7 @@ def get_student_timetable(
 
     return res
 
-@router.get("/goals")
+@router.get("/goals", response_model=List[GoalOut])
 def get_goals(
     current_user: User = Depends(require_role(["student"])),
     db: Session = Depends(get_db)
@@ -416,25 +416,24 @@ def get_goals(
     goals = db.query(Goal).filter(Goal.student_id == student.id).all()
     return goals
 
-@router.post("/goals")
+@router.post("/goals", response_model=GoalOut)
 def create_goal(
-    title: str,
-    target_date: Optional[date] = None,
+    goal_in: GoalCreate,
     current_user: User = Depends(require_role(["student"])),
     db: Session = Depends(get_db)
 ):
     student = _get_student_profile(current_user, db)
     goal = Goal(
         student_id=student.id,
-        title=title,
-        target_date=target_date
+        title=goal_in.title,
+        target_date=goal_in.target_date
     )
     db.add(goal)
     db.commit()
     db.refresh(goal)
     return goal
 
-@router.patch("/goals/{id}/toggle")
+@router.patch("/goals/{id}/toggle", response_model=GoalOut)
 def toggle_goal(
     id: int,
     current_user: User = Depends(require_role(["student"])),
